@@ -14,8 +14,9 @@ shared_scripts {
     'bridge.lua',   -- The Bridge Core must be included in shared scripts to be accessible by both client and server
     'config.lua',    -- Config first to initialize variables
     'state.lua',     -- State management
-    'utils.lua',     -- Shared helpers
+    'utils.lua',     -- Shared helpers,
    
+    'src/events.js'
 }
 
 -- All internal modules accessed via require/LoadModule
@@ -53,6 +54,7 @@ files {
     'server/reputation/reputation.lua',
     'server/items/items.lua',
     'server/missions/missions.lua',
+    'server/towing/towing.lua',
 
     -- Server Garage/Vehicle Persistence
     'server/garages/garages.lua',
@@ -71,6 +73,7 @@ files {
     'client/blips/blips.lua',
     'client/spawn/spawn.lua',
     'client/effects/effects.lua',
+    'client/towing/towing.lua',
 
     -- Client Vehicle Management
     'client/vehicles/vehicles.lua',

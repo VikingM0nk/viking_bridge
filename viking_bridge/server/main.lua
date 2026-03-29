@@ -77,7 +77,10 @@ local function InitializeBridge()
         'server/vehicles/vehicles', -- Added Vehicle Module
         'server/keys/keys',     -- Added Keys Module
         'server/garages/garages',     -- Added Garage Module
+        'server/towing/towing'     -- Added Towing Module
+    
     }
+
 
     for _, modulePath in ipairs(modules) do
         local moduleTable = LoadServerModule(modulePath)
@@ -148,3 +151,4 @@ exports('Notify', function(src, msg, type)
         TriggerClientEvent('QBCore:Notify', src, msg, type) -- Final fallback
     end
 end)
+

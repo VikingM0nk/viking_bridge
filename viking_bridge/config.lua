@@ -1,31 +1,45 @@
 -- config.lua
 -- Global configuration for Viking Bridge
+Config = Config or {}
 
-local Config = {}
+-- [[ FRAMEWORK AUTO-DETECTION ]]
+-- This snippet runs immediately when the resource loads, 
+-- ensuring 'Framework' is never nil for your modules.
+if not Config.ForceFramework then
+    if GetResourceState('es_extended') == 'started' then
+        Framework = 'esx'
+    elseif GetResourceState('qbox') == 'started' then
+        Framework = 'qbox'
+    elseif GetResourceState('qb-core') == 'started' then
+        Framework = 'qb'
+    else
+        Framework = 'standalone'
+    end
+else
+    Framework = Config.ForceFramework
+end
 
 -- [[ SYSTEM CORE ]]
--- Set to true to see detailed initialization and logic logs in console
 Config.Debug = true
 
 -- [[ MISSION DEFAULTS ]]
--- Global settings for how missions handle entity management
 Config.Mission = {
-    AutoCleanup = true,      -- Automatically delete peds/vehicles when mission ends
-    CleanupRadius = 150.0,   -- Distance in meters to check for "abandoned" assets
-    RespawnDelay = 5000      -- Time in ms before a failed mission can be restarted
+    AutoCleanup = true,
+    CleanupRadius = 150.0,
+    RespawnDelay = 5000
 }
 
 -- [[ PREFERENCE OVERRIDES ]]
--- Use these to force a specific system if detection fails
-Config.ForceFramework = false -- Set to 'qb', 'esx', or 'qbox' to bypass detection
-Config.ForceInventory = false -- Set to 'ox', 'qb', 'codem', etc.
-Config.ForceBanking   = false -- Set to 'renewed', 'okok', etc.
+-- Set to 'qb', 'esx', or 'qbox' to bypass detection if needed
+Config.ForceFramework = false 
+Config.ForceInventory = false 
+Config.ForceBanking   = false 
 
 -- [[ UI SETTINGS ]]
--- Default styling for notifications and progress bars
 Config.UI = {
     NotifyPosition = 'top-right',
     ProgressColor = '#cfb53b' -- Viking Gold hex code
 }
 
+-- Ensure the global is available for other resources
 return Config
